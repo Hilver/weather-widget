@@ -7,12 +7,12 @@ export const widgetItems = [
 	{
 		item: 'hour',
 		name: 'Godzina',
-		height: 30
+		height: 35
 	},
 	{
 		item: 'forecast',
 		name: 'Prognoza',
-		height: 30
+		height: 40
 	},
 	{
 		item: 'temperature',
@@ -27,7 +27,7 @@ export const widgetItems = [
 	{
 		item: 'wind-direction',
 		name: 'Kierunek wiatru',
-		height: 50
+		height: 70
 	},
 	{
 		item: 'wind-speed',
@@ -41,7 +41,7 @@ export const widgetItems = [
 	},
 ]
 
-export const getItemHeight = item => widgetItems.filter(el => el.item === item)[0].height
+export const getItemHeight = item => widgetItems.filter(el => el.item === item)[0].height + 1
 
 export const globalStyles = {
 	borderColor: '#dedede',
