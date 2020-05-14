@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { ArrowLeft, ArrowRight } from '../styled'
 import styled from 'styled-components'
 
 const MainView = styled.div`
 	position: relative;
 	display: flex;
-	width: 100%;
+	width: 700px;
 	height: auto;
 	overflow-x: hidden;
 
@@ -35,6 +36,10 @@ const Carousel = ({children, data}) => {
 	const [isMouseDown, setIsMouseDown] = useState(false)
 	const [startDragPosition, setStartDragPosition] = useState(0)
 	const [currentScrollLeft, setCurrentScrollLeft] = useState(0)
+	const [showArrow, setShowArrow] = useState({
+		left: false,
+		right: false
+	})
 	const carouselRef = useRef()
 	const scrollLeft = useRef(currentScrollLeft)
 
@@ -46,26 +51,27 @@ const Carousel = ({children, data}) => {
 		const _startX = e.pageX - carousel.offsetLeft
 
 		setStartDragPosition(_startX)
-	}	
+		
+	}
 
 	const handleMouseMove = e => {
 		const carousel = carouselRef.current
 		if(!isMouseDown) return
-			const x = e.pageX - carousel.offsetLeft
-			const walk = x - startDragPosition
-			
-			setCurrentScrollLeft(scrollLeft.current + walk)
-			
-			carousel.scrollLeft = (scrollLeft.current + walk) * 0.5
-			carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft) * 0.5)}px)`
 
+		const x = e.pageX - carousel.offsetLeft
+		const walk = x - startDragPosition
+		
+		setCurrentScrollLeft(scrollLeft.current + walk)
+		
+		carousel.scrollLeft = (scrollLeft.current + walk) * 0.5
+		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft) * 0.5)}px)`
 	}
 
 	const handleSnap = () => {
 		const carousel = carouselRef.current
 
 		setIsMouseDown(false)
-	
+		
 		const end = carousel.offsetLeft + carousel.getBoundingClientRect().right
 		scrollLeft.current = currentScrollLeft
 		  
@@ -84,6 +90,26 @@ const Carousel = ({children, data}) => {
 	
 	const handleMouseLeave = () => {
 		handleSnap()
+		setShowArrow({
+			left: false,
+			right: false
+		})
+	}
+
+	const handleMouseEnter = () => {
+		setShowArrow({
+			left: true,
+			right: true
+		})
+	}
+
+	const handleArrows = value => {
+		const carousel = carouselRef.current
+
+		setCurrentScrollLeft(prev => prev + value)
+		scrollLeft.current = scrollLeft.current + value
+		carousel.scrollLeft = (scrollLeft.current + value) * 0.5
+		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft + value) * 0.5)}px)`
 	}
 
 	return (
@@ -91,12 +117,15 @@ const Carousel = ({children, data}) => {
 			onMouseMove={handleMouseMove} 
 			onMouseDown={handleMouseDown} 
 			onMouseUp={handleMouseUp}
+			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave} 
 			ref={carouselRef}
 		>
 			<BoxesContainer id='widget' positionX={currentScrollLeft} items={data.length}>
 				{children}
 			</BoxesContainer>
+			<ArrowLeft onClick={() => handleArrows(-100)} show={showArrow.left}>elo</ArrowLeft>
+			<ArrowRight onClick={() => handleArrows(100)} show={showArrow.right}>elo</ArrowRight>
 		</MainView>
 	)
 }

@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import {RangeContainer, Label, Point } from '../../styled/'
 
 const RangeBox = ({height, children, value, cssClass, range}) => {
 	const rangeValue = range.max - range.min
-	const calculatedPosition = (value - range.min) * Math.floor((height - 20) / rangeValue)
-	console.log({calculatedPosition, value, rangeMin: range.min})
+	const memoizedCalculatedPosition = useMemo(() => (value - range.min) * Math.floor((height - 20) / rangeValue), [])
+	
 	return (
 		<RangeContainer height={height}>
-			<Label position={calculatedPosition}>
+			<Label position={memoizedCalculatedPosition}>
 				{children}
 			</Label>
-			<Point position={calculatedPosition} className={cssClass}/>
+			<Point position={memoizedCalculatedPosition} className={cssClass}/>
 		</RangeContainer>
 	)
 }
