@@ -1,12 +1,13 @@
 import React from 'react'
 
-import './styles/main.css'
+// import WidgetWindow from './components/widgetWindow'
+import MainView from './components/mainView'
 
 const App = () => {
 
 	return (
 		<div>
-			Hello from React Basic Template!
+			<MainView />
 		</div>
 	)
 }
