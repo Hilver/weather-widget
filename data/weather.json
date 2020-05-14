@@ -1,0 +1,302 @@
+{
+	"today": [
+		{
+			"time": "01:00",
+			"weather": "rain",
+			"temp": 7,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "02:00",
+			"weather": "rain",
+			"temp": 6,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "03:00",
+			"weather": "rain",
+			"temp": 6,
+			"rain": 0,
+			"wind": {
+				"degree": 180,
+				"direction": "Wschód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "04:00",
+			"weather": "rain",
+			"temp": 4,
+			"rain": 0,
+			"wind": {
+				"degree": 90,
+				"direction": "Południe",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "05:00",
+			"weather": "rain",
+			"temp": 4,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "06:00",
+			"weather": "rain",
+			"temp": 7,
+			"rain": 0,
+			"wind": {
+				"degree": 270,
+				"direction": "Północ",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "07:00",
+			"weather": "rain",
+			"temp": 9,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Pd-Zach.",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "08:00",
+			"weather": "rain",
+			"temp": 11,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "09:00",
+			"weather": "rain",
+			"temp": 12,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "10:00",
+			"weather": "rain",
+			"temp": 14,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "11:00",
+			"weather": "rain",
+			"temp": 14,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "12:00",
+			"weather": "rain",
+			"temp": 16,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "13:00",
+			"weather": "rain",
+			"temp": 21,
+			"rain": 0.2,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "14:00",
+			"weather": "rain",
+			"temp": 18,
+			"rain": 0.4,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "15:00",
+			"weather": "rain",
+			"temp": 18,
+			"rain": 0.6,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "16:00",
+			"weather": "rain",
+			"temp": 19,
+			"rain": 0.9,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "17:00",
+			"weather": "rain",
+			"temp": 17,
+			"rain": 1.2,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},		{
+			"time": "18:00",
+			"weather": "rain",
+			"temp": 17,
+			"rain": 0.4,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "19:00",
+			"weather": "rain",
+			"temp": 15,
+			"rain": 0.1,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "20:00",
+			"weather": "rain",
+			"temp": 13,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "21:00",
+			"weather": "rain",
+			"temp": 8,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "22:00",
+			"weather": "rain",
+			"temp": 7,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		},
+		{
+			"time": "23:00",
+			"weather": "rain",
+			"temp": 6,
+			"rain": 0,
+			"wind": {
+				"degree": 0,
+				"direction": "Zachód",
+				"power": "Słaby",
+				"speed": "7 km/h"
+			},
+			"pressure": 1012
+		}
+	]
+}
