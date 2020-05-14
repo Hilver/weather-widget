@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import WidgetLegend from './widgetLegend'
-import WidgetView from './widgetView'
+import WidgetLegend from './Legend'
+import WidgetView from './Widget'
 
 const MainView = styled.div`
 	display: flex;

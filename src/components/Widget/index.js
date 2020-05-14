@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import WidgetWindow from './widgetWindow'
+
 const WidgetView = styled.div`
-	
+	position: relative;
 	width: 700px;
 	height: auto;
 	border-left: 1px solid grey;
-	border-right: 1px solid grey;
 	transform: translateZ(0);
 
 	&:hover {
@@ -21,6 +22,17 @@ const WidgetView = styled.div`
 		left: 0px;
 		top: 0px;
 		box-shadow: 2px 0px 10px 3px #aaaaaa;
+		z-index: 10;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		height: 100%;
+		box-shadow: -5px 0px 60px 35px #ffffff;
+		z-index: 10;
 	}
 `
 
@@ -40,14 +52,15 @@ const ArrowLeft = styled(NavigationArrow)`
 	left: 0px;
 	border-bottom-right-radius: 90px;
 	border-top-right-radius: 90px;
+	z-index: 11;
 `
 
 const ArrowRight = styled(NavigationArrow)`
 	right: 0px;
 	border-bottom-left-radius: 90px;
-	border-top-left-radius: 90px;	
+	border-top-left-radius: 90px;
+	z-index: 11;
 `
-
 
 const widgetView = () => {
 	const [show, setShow] = useState(false)
@@ -56,9 +69,10 @@ const widgetView = () => {
 	const hideNavigation = () => setShow(false)
 
 	return (
-		<WidgetView onMouseEnter={showNavigation} onMouseLeave={hideNavigation}>		
+		<WidgetView onMouseEnter={showNavigation} onMouseLeave={hideNavigation}>
 			<ArrowLeft show={show}>left</ArrowLeft>
-			<ArrowRight show={show}>right</ArrowRight>			
+			<ArrowRight show={show}>right</ArrowRight>
+			<WidgetWindow/>
 		</WidgetView>
 	)
 }
