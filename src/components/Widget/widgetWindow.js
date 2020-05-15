@@ -17,7 +17,7 @@ const WidgetWindow = () => {
 		const widget = document.getElementById('widget')
 		const tempPoints = document.getElementsByClassName('temperaturePoint')
 		const pressurePoints = document.getElementsByClassName('pressurePoint')
-		const temperatureLine = new Line('yellow', 1)
+		const temperatureLine = new Line('#f5dd42', 1)
 		const pressureLine = new Line()
 		const widgetOffsetLeft = widget.getBoundingClientRect().left
 		

@@ -21,7 +21,8 @@ export const Point = styled.div`
 
 export const Label = styled.div`
 	position: absolute;
-	bottom: ${props => `${props.position + 18}px`};
+	bottom: ${props => `${props.position + 15}px`};
 	left: 50%;
 	transform: translate(-50%, 0%);
+	font-size: ${props => `${props.fontSize || 14}px`}
 `

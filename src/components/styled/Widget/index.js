@@ -40,11 +40,15 @@ export const NavigationArrow = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 40px;
-	height: 80px;
-	background-color: #f0f0f0;
-	opacity: ${props => props.show ? '0.6' : '0'};
+	width: 45px;
+	height: 90px;
+	background-color: #b9bdba;
+	opacity: ${props => props.show ? '0.4' : '0'};
 	transition: all 0.5s ease;
+
+	&:hover {
+		opacity: 0.6;
+	}
 `
 export const ArrowLeft = styled(NavigationArrow)`
 	left: 0px;

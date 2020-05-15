@@ -5,6 +5,7 @@ import RangeBox from './RangeBox'
 const TemperatureBox = ({
 	value, 
 	height,
+	fontSize,
 	range
 }) => {
 
@@ -13,9 +14,10 @@ const TemperatureBox = ({
 			value={value} 
 			height={height}
 			range={range}
+			fontSize={fontSize}
 			cssClass='temperaturePoint'
 		>
-			{value} &deg;
+			<strong>{value} &deg;</strong>
 		</RangeBox>
 	)
 }
