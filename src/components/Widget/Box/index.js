@@ -14,7 +14,7 @@ const WidgetBox = ({data, temperatureRange, pressureRange}) => {
 		<div>
 			<Box height={getItemHeight('day')}></Box>
 			<Box height={getItemHeight('hour')}>
-				{data.time}
+				<strong>{data.time}</strong>
 			</Box>
 			<IconBox
 				height={getItemHeight('forecast')}
@@ -24,6 +24,7 @@ const WidgetBox = ({data, temperatureRange, pressureRange}) => {
 				height={getItemHeight('temperature')}
 				value={data.temp}
 				range={temperatureRange}
+				fontSize={16}
 			/>
 			<RainBox 
 				height={getItemHeight('rain')}
@@ -43,6 +44,7 @@ const WidgetBox = ({data, temperatureRange, pressureRange}) => {
 				height={getItemHeight('pressure')} 
 				value={data.pressure}
 				range={pressureRange}
+				fontSize={12}
 				cssClass='pressurePoint'
 			>
 				<strong>{data.pressure} hPa</strong>

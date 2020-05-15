@@ -11,7 +11,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		},
 		{
 			"time": "02:00",
@@ -63,7 +63,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1015
 		},
 		{
 			"time": "06:00",
@@ -89,7 +89,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		},
 		{
 			"time": "08:00",
@@ -102,7 +102,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1017
 		},
 		{
 			"time": "09:00",
@@ -115,7 +115,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1015
 		},
 		{
 			"time": "10:00",
@@ -128,7 +128,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		},
 		{
 			"time": "11:00",
@@ -141,7 +141,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1013
 		},
 		{
 			"time": "12:00",
@@ -154,7 +154,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		},
 		{
 			"time": "13:00",
@@ -167,7 +167,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1016
 		},
 		{
 			"time": "14:00",
@@ -180,7 +180,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1015
 		},
 		{
 			"time": "15:00",
@@ -193,7 +193,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		},
 		{
 			"time": "16:00",
@@ -206,7 +206,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1011
 		},
 		{
 			"time": "17:00",
@@ -244,7 +244,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1015
 		},
 		{
 			"time": "20:00",
@@ -257,7 +257,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1015
 		},
 		{
 			"time": "21:00",
@@ -296,7 +296,7 @@
 				"power": "Słaby",
 				"speed": "7 km/h"
 			},
-			"pressure": 1012
+			"pressure": 1014
 		}
 	]
 }

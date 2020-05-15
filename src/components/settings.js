@@ -22,7 +22,7 @@ export const widgetItems = [
 	{
 		item: 'rain',
 		name: 'Opady',
-		height: 50
+		height: 70
 	},
 	{
 		item: 'wind-direction',

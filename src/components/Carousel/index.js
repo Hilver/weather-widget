@@ -1,6 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '../styled'
+import { LeftArrow, RightArrow } from '@styled-icons/boxicons-solid'
 import styled from 'styled-components'
+
+const WhiteLeftArrow = styled(LeftArrow)`
+	color: #ffffff;
+	width: 25px;
+	padding-right: 15px;
+`
+
+const WhiteRightArrow = styled(RightArrow)`
+	color: #ffffff;
+	width: 25px;
+	padding-left: 15px;
+`
 
 const MainView = styled.div`
 	position: relative;
@@ -8,6 +21,7 @@ const MainView = styled.div`
 	width: 700px;
 	height: auto;
 	overflow-x: hidden;
+	scroll-behavior: ${props => props.mouseOnArrow ? 'smooth' : 'auto'};
 
 	&:hover {
 		overflow-x: scroll;
@@ -29,7 +43,7 @@ const BoxesContainer = styled.div`
 	display: flex;
 	width: ${props => props.items * 101}px;
 	height: auto;
-	transition: ${props => props.isMouseDown ? 'transform: 0s ease-out' : 'transform 0.5s cubic-bezier(.25,.72,.51,.96)'};
+	transition: ${props => props.isMouseDown ? 'transform: 0.1s ease-out' : 'transform 0.5s cubic-bezier(.25,.72,.51,.96)'};
 `
 
 const Carousel = ({children, data}) => {
@@ -40,6 +54,7 @@ const Carousel = ({children, data}) => {
 		left: false,
 		right: false
 	})
+	const [mouseOnArrow, setMouseOnArrow] = useState(false)
 	const carouselRef = useRef()
 	const scrollLeft = useRef(currentScrollLeft)
 
@@ -50,8 +65,7 @@ const Carousel = ({children, data}) => {
 
 		const _startX = e.pageX - carousel.offsetLeft
 
-		setStartDragPosition(_startX)
-		
+		setStartDragPosition(_startX)		
 	}
 
 	const handleMouseMove = e => {
@@ -65,6 +79,21 @@ const Carousel = ({children, data}) => {
 		
 		carousel.scrollLeft = (scrollLeft.current + walk) * 0.5
 		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft) * 0.5)}px)`
+		
+		if (currentScrollLeft < 20) {
+			setShowArrow(prev => ({
+				...prev,
+				left: currentScrollLeft > 0 ? true : false
+			}))
+		}
+		const carouselOffsetLeft = carousel.getBoundingClientRect().left
+		const maxScrollLeft = carousel.offsetWidth + carouselOffsetLeft
+		if(carousel.scrollLeft > maxScrollLeft - 20) {
+			setShowArrow(prev => ({
+				...prev,
+				right: carousel.scrollLeft < maxScrollLeft ? true : false
+			}))
+		}
 	}
 
 	const handleSnap = () => {
@@ -78,6 +107,7 @@ const Carousel = ({children, data}) => {
 		if (currentScrollLeft < 0 || currentScrollLeft * 0.5 > end) {
 			setIsMouseDown(false)
 			const currentScrollLeftPosition = currentScrollLeft < 0 ? 0 : end
+
 			setCurrentScrollLeft(() => currentScrollLeftPosition * 2)
 			scrollLeft.current = currentScrollLeftPosition * 2
 			carousel.firstChild.style.transform = `translateX(${-currentScrollLeftPosition}px)`
@@ -103,7 +133,7 @@ const Carousel = ({children, data}) => {
 		})
 	}
 
-	const handleArrows = value => {
+	const handleArrowsAction = value => {
 		const carousel = carouselRef.current
 
 		setCurrentScrollLeft(prev => prev + value)
@@ -112,20 +142,39 @@ const Carousel = ({children, data}) => {
 		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft + value) * 0.5)}px)`
 	}
 
+	const handleOnMouseOnArrow = () => setMouseOnArrow(true)
+	const handleOnMouseOutArrow = () => setMouseOnArrow(false)
+
 	return (
 		<MainView
 			onMouseMove={handleMouseMove} 
 			onMouseDown={handleMouseDown} 
 			onMouseUp={handleMouseUp}
 			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave} 
+			onMouseLeave={handleMouseLeave}
+			mouseOnArrow={mouseOnArrow}
 			ref={carouselRef}
 		>
 			<BoxesContainer id='widget' positionX={currentScrollLeft} items={data.length}>
 				{children}
 			</BoxesContainer>
-			<ArrowLeft onClick={() => handleArrows(-100)} show={showArrow.left}>elo</ArrowLeft>
-			<ArrowRight onClick={() => handleArrows(100)} show={showArrow.right}>elo</ArrowRight>
+			
+			<ArrowLeft
+				onClick={() => handleArrowsAction(-100)} 
+				onMouseEnter={handleOnMouseOnArrow}
+				onMouseLeave={handleOnMouseOutArrow}
+				show={showArrow.left}
+			>
+				<WhiteLeftArrow />	
+			</ArrowLeft>
+			<ArrowRight 
+				onClick={() => handleArrowsAction(100)} 
+				onMouseEnter={handleOnMouseOnArrow}
+				onMouseLeave={handleOnMouseOutArrow}
+				show={showArrow.right}
+			>
+				<WhiteRightArrow />
+			</ArrowRight>
 		</MainView>
 	)
 }

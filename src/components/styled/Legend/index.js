@@ -12,5 +12,5 @@ export const LegendItem = styled.div`
 	width: 100px;
 	height: ${props => props.height || 20}px;
 	border-bottom: 1px solid #dedede;
-	color: #dedede;
+	color: #7a7d7b;
 `
