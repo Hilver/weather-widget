@@ -1,42 +1,26 @@
 import React, { useState, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '../styled'
-import { LeftArrow, RightArrow } from '@styled-icons/boxicons-solid'
 import styled from 'styled-components'
+import { 
+	BoxesContainer,
+	HandPointer,
+	WhiteLeftArrow,
+	WhiteRightArrow
+} from '../styled/'
 import { getImagePath } from '../../assets/'
-
-const HandPointer = styled.img`
-	position: fixed;
-	top: ${props => props.top - 25}px;
-	left: ${props => props.left - 25}px;
-	margin: 0px;
-	padding: 0px;
-	width: 45px;
-	display: ${props => props.show ? 'block' : 'none'};
-`
-
-const WhiteLeftArrow = styled(LeftArrow)`
-	color: #ffffff;
-	width: 25px;
-	padding-right: 15px;
-`
-
-const WhiteRightArrow = styled(RightArrow)`
-	color: #ffffff;
-	width: 25px;
-	padding-left: 15px;
-`
+import { mainTheme } from '../settings'
 
 const MainView = styled.div`
 	position: relative;
 	display: flex;
-	width: 700px;
+	width: ${props => props.theme.viewportWidth}px;
 	height: auto;
 	overflow-x: hidden;
 	scroll-behavior: ${props => props.mouseOnArrow ? 'smooth' : 'auto'};
+	cursor: ${props => props.showCursor ? 'none' : 'grab'};
 
 	&:hover {
 		overflow-x: scroll;
-		cursor: ${props => props.isMouseDown ? 'none' : 'grab'};
 	}
 
 	::-webkit-scrollbar {
@@ -51,12 +35,6 @@ const MainView = styled.div`
 	}
 `
 
-const BoxesContainer = styled.div`
-	display: flex;
-	width: ${props => props.items * 101}px;
-	height: auto;
-	transition: ${props => props.isMouseDown ? 'transform: 0.1s ease-out' : 'transform 0.5s cubic-bezier(.25,.72,.51,.96)'};
-`
 
 const Carousel = ({children, data}) => {
 	const [isMouseDown, setIsMouseDown] = useState(false)
@@ -73,7 +51,7 @@ const Carousel = ({children, data}) => {
 	const [mouseOnArrow, setMouseOnArrow] = useState(false)
 	const carouselRef = useRef()
 	const accumulatorOffsetLeft = useRef(transOffsetLeft)
-
+	
 	const handleMouseDown = e => {
 		const carousel = carouselRef.current
 		setIsMouseDown(true)
@@ -97,8 +75,8 @@ const Carousel = ({children, data}) => {
 		
 		setTransOffsetLeft(accumulatorOffsetLeft.current + walk)
 		
-		carousel.scrollLeft = (accumulatorOffsetLeft.current + walk) * 0.5
-		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft) * 0.5)}px)`
+		carousel.scrollLeft = (accumulatorOffsetLeft.current + walk) * mainTheme.carousel.scrollSpeed
+		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft) * mainTheme.carousel.scrollSpeed)}px)`
 		
 		if (transOffsetLeft < 20) {
 			setShowArrow(prev => ({
@@ -124,12 +102,13 @@ const Carousel = ({children, data}) => {
 		const end = carousel.offsetLeft + carousel.getBoundingClientRect().right
 		accumulatorOffsetLeft.current = transOffsetLeft
 		  
-		if (transOffsetLeft < 0 || transOffsetLeft * 0.5 > end) {
+		if (transOffsetLeft < 0 || transOffsetLeft * mainTheme.carousel.scrollSpeed > end) {
 			setIsMouseDown(false)
 			const transOffsetLeftPosition = transOffsetLeft < 0 ? 0 : end
 
-			setTransOffsetLeft(() => transOffsetLeftPosition * 2)
-			accumulatorOffsetLeft.current = transOffsetLeftPosition * 2
+			const adjustToScrollSpeed = 1 / mainTheme.carousel.scrollSpeed
+			setTransOffsetLeft(() => transOffsetLeftPosition * adjustToScrollSpeed)
+			accumulatorOffsetLeft.current = transOffsetLeftPosition * adjustToScrollSpeed
 			carousel.firstChild.style.transform = `translateX(${-transOffsetLeftPosition}px)`
 		}
 	  };
@@ -157,9 +136,9 @@ const Carousel = ({children, data}) => {
 		const carousel = carouselRef.current
 
 		setTransOffsetLeft(prev => prev + value)
-		carousel.scrollLeft = (accumulatorOffsetLeft.current + value) * 0.5
+		carousel.scrollLeft = (accumulatorOffsetLeft.current + value) * mainTheme.carousel.scrollSpeed
 		accumulatorOffsetLeft.current = accumulatorOffsetLeft.current + value
-		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft + value) * 0.5)}px)`
+		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft + value) * mainTheme.carousel.scrollSpeed)}px)`
 	}
 
 	const handleOnMouseOnArrow = () => setMouseOnArrow(true)
@@ -173,7 +152,7 @@ const Carousel = ({children, data}) => {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			mouseOnArrow={mouseOnArrow}
-			isMouseDown={isMouseDown}
+			showCursor={isMouseDown}
 			ref={carouselRef}
 		>
 			<BoxesContainer id='widget' positionX={transOffsetLeft} items={data.length}>

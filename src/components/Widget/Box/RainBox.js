@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import Box from './PlainBox'
 
 const RainBox = ({height, rainfall}) => {
+	const memoizedRainfallValue = useMemo(() => rainfall.toString().replace('.', ','), [rainfall])
+	const memoizedRainfallHeight = useMemo(() => rainfall * 10, [rainfall])
 
 	return (
 		<Box 
@@ -11,10 +13,10 @@ const RainBox = ({height, rainfall}) => {
 			justifyContent='flex-end' 
 			alignItems='center'
 		>
-			<div>{rainfall !== 0 && `${rainfall} mm`}</div>
+			<div>{rainfall !== 0 && `${memoizedRainfallValue} mm`}</div>
 			<div style={{ 
 				width: '100%', 
-				borderTop: `${rainfall * 10}px solid #03f4fc`}}
+				borderTop: `${memoizedRainfallHeight}px solid #03f4fc`}}
 			>
 			</div>
 		</Box>

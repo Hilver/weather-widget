@@ -3,7 +3,7 @@ export { RangeContainer, Point, Label } from './Box/RangeBox'
 
 export const WidgetView = styled.div`
 	position: relative;
-	width: 700px;
+	width: auto;
 	height: auto;
 	border-left: 1px solid grey;
 	transform: translateZ(0);

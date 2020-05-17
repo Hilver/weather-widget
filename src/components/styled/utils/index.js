@@ -5,9 +5,9 @@ export const Box = styled.div`
 	justify-content: ${props => props.justifyContent || 'center'};
 	flex-direction: ${props => props.flexDirection || 'row'};
 	align-items: ${props => props.alignItems || 'center'};
-	width: 100px;
+	width: ${props => props.theme.widgetItem.width}px;
 	height: ${props => `${props.height}px` || 'auto'};
-	border-right: ${props => `1px solid ${props.borderColor || 'grey'}`};
+	border-right: ${props => `${props.theme.widgetItem.borderWidth}px solid ${props.borderColor || 'grey'}`};
 	background-color: ${props => props.backgroundColor || 'none'};
 `
 

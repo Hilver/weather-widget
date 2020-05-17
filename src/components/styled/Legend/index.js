@@ -9,8 +9,9 @@ export const LegendItem = styled.div`
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	width: 100px;
+	width: ${props => props.theme.legend.width}px;
 	height: ${props => props.height || 20}px;
-	border-bottom: 1px solid #dedede;
-	color: #7a7d7b;
+	border-bottom: ${props => 
+		`${props.theme.legend.bottomBorderWidth}px solid #dedede`};
+	color: ${props => props.theme.legend.fontColor};
 `
