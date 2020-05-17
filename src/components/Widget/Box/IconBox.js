@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Box from './PlainBox'
-import { getWeatherIcon } from '../../../assets'
+import { getImagePath } from '../../../assets'
 import {IconImg} from '../../styled/'
 
 const IconBox = ({borderColor, height, icon, rotate}) => {
@@ -14,7 +14,7 @@ const IconBox = ({borderColor, height, icon, rotate}) => {
 			<IconImg 
 				rotate={rotate}
 				height={height} 
-				src={getWeatherIcon(icon)} 
+				src={getImagePath(icon)} 
 			/>
 		</Box>
 	)

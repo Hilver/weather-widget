@@ -2,6 +2,17 @@ import React, { useState, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from '../styled'
 import { LeftArrow, RightArrow } from '@styled-icons/boxicons-solid'
 import styled from 'styled-components'
+import { getImagePath } from '../../assets/'
+
+const HandPointer = styled.img`
+	position: fixed;
+	top: ${props => props.top - 25}px;
+	left: ${props => props.left - 25}px;
+	margin: 0px;
+	padding: 0px;
+	width: 45px;
+	display: ${props => props.show ? 'block' : 'none'};
+`
 
 const WhiteLeftArrow = styled(LeftArrow)`
 	color: #ffffff;
@@ -25,6 +36,7 @@ const MainView = styled.div`
 
 	&:hover {
 		overflow-x: scroll;
+		cursor: ${props => props.isMouseDown ? 'none' : 'grab'};
 	}
 
 	::-webkit-scrollbar {
@@ -50,6 +62,10 @@ const Carousel = ({children, data}) => {
 	const [isMouseDown, setIsMouseDown] = useState(false)
 	const [startDragPosition, setStartDragPosition] = useState(0)
 	const [transOffsetLeft, setTransOffsetLeft] = useState(0)
+	const [cursorPosition, setCursorPosition] = useState({
+		x: 0,
+		y: 0
+	})
 	const [showArrow, setShowArrow] = useState({
 		left: false,
 		right: false
@@ -65,7 +81,11 @@ const Carousel = ({children, data}) => {
 
 		const _startX = e.pageX - carousel.offsetLeft
 
-		setStartDragPosition(_startX)		
+		setStartDragPosition(_startX)
+		setCursorPosition({
+			x: e.pageX - carousel.getBoundingClientRect().left,
+			y: e.pageY - carousel.getBoundingClientRect().top
+		})
 	}
 
 	const handleMouseMove = e => {
@@ -73,7 +93,7 @@ const Carousel = ({children, data}) => {
 		if(!isMouseDown) return
 
 		const x = e.pageX - carousel.offsetLeft
-		const walk = x - startDragPosition
+		const walk = -(x - startDragPosition)
 		
 		setTransOffsetLeft(accumulatorOffsetLeft.current + walk)
 		
@@ -153,12 +173,18 @@ const Carousel = ({children, data}) => {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			mouseOnArrow={mouseOnArrow}
+			isMouseDown={isMouseDown}
 			ref={carouselRef}
 		>
 			<BoxesContainer id='widget' positionX={transOffsetLeft} items={data.length}>
 				{children}
 			</BoxesContainer>
-			
+			<HandPointer 
+			show={isMouseDown} 
+			top={cursorPosition.y} 
+			left={cursorPosition.x} 
+			src={getImagePath('closed_hand')}
+			/>
 			<ArrowLeft
 				onClick={() => handleArrowsAction(-100)} 
 				onMouseEnter={handleOnMouseOnArrow}
