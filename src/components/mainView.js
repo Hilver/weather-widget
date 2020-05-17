@@ -8,6 +8,7 @@ const MainView = styled.div`
 	display: flex;
 	width: auto;
 	height: auto;
+	color: ${props => props.theme.fontColor.main};
 `
 
 const mainView = () => {

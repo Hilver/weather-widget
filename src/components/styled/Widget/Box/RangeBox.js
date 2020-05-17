@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 export const RangeContainer = styled.div`
 	position: relative;
-	width: 100px;
+	width: ${props => props.theme.widgetItem.width}px;
 	height: ${props => props.height || 0}px;
-	border-right: 1px solid grey;
+	border-right: ${props => 
+		`${props.theme.widgetItem.borderWidth}px solid ${props.borderColor || 'grey'}`}
 `
 
 export const Point = styled.div`

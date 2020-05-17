@@ -41,14 +41,25 @@ export const widgetItems = [
 	},
 ]
 
-export const getItemHeight = item => widgetItems.filter(el => el.item === item)[0].height + 1
+export const getItemHeight = item => widgetItems.filter(el =>
+		el.item === item)[0].height + mainTheme.legend.bottomBorderWidth
 
-export const globalStyles = {
-	borderColor: '#dedede',
+export const mainTheme = {
 	widgetItem: {
-		width: 100
+		width: 100,
+		borderWidth: 1
 	},
+	legend: {
+		width: 100,
+		fontColor: '#6d706e',
+		bottomBorderWidth: 1
+	},
+	carousel: {
+		scrollSpeed: 0.5
+	},
+	viewportWidth: 700,
+	borderColor: '#dedede',
 	fontColor: {
 		main: '#000000'
-	}
+	},
 }

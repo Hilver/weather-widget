@@ -1,13 +1,15 @@
 import React from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import MainView from './components/mainView'
+import { mainTheme } from './components/settings'
 
 const App = () => {
 
 	return (
-		<div>
+		<ThemeProvider theme={mainTheme}>
 			<MainView />
-		</div>
+		</ThemeProvider>
 	)
 }
 
