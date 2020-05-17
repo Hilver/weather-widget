@@ -49,14 +49,14 @@ const BoxesContainer = styled.div`
 const Carousel = ({children, data}) => {
 	const [isMouseDown, setIsMouseDown] = useState(false)
 	const [startDragPosition, setStartDragPosition] = useState(0)
-	const [currentScrollLeft, setCurrentScrollLeft] = useState(0)
+	const [transOffsetLeft, setTransOffsetLeft] = useState(0)
 	const [showArrow, setShowArrow] = useState({
 		left: false,
 		right: false
 	})
 	const [mouseOnArrow, setMouseOnArrow] = useState(false)
 	const carouselRef = useRef()
-	const scrollLeft = useRef(currentScrollLeft)
+	const accumulatorOffsetLeft = useRef(transOffsetLeft)
 
 	const handleMouseDown = e => {
 		const carousel = carouselRef.current
@@ -75,15 +75,15 @@ const Carousel = ({children, data}) => {
 		const x = e.pageX - carousel.offsetLeft
 		const walk = x - startDragPosition
 		
-		setCurrentScrollLeft(scrollLeft.current + walk)
+		setTransOffsetLeft(accumulatorOffsetLeft.current + walk)
 		
-		carousel.scrollLeft = (scrollLeft.current + walk) * 0.5
-		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft) * 0.5)}px)`
+		carousel.scrollLeft = (accumulatorOffsetLeft.current + walk) * 0.5
+		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft) * 0.5)}px)`
 		
-		if (currentScrollLeft < 20) {
+		if (transOffsetLeft < 20) {
 			setShowArrow(prev => ({
 				...prev,
-				left: currentScrollLeft > 0 ? true : false
+				left: transOffsetLeft > 0 ? true : false
 			}))
 		}
 		const carouselOffsetLeft = carousel.getBoundingClientRect().left
@@ -102,15 +102,15 @@ const Carousel = ({children, data}) => {
 		setIsMouseDown(false)
 		
 		const end = carousel.offsetLeft + carousel.getBoundingClientRect().right
-		scrollLeft.current = currentScrollLeft
+		accumulatorOffsetLeft.current = transOffsetLeft
 		  
-		if (currentScrollLeft < 0 || currentScrollLeft * 0.5 > end) {
+		if (transOffsetLeft < 0 || transOffsetLeft * 0.5 > end) {
 			setIsMouseDown(false)
-			const currentScrollLeftPosition = currentScrollLeft < 0 ? 0 : end
+			const transOffsetLeftPosition = transOffsetLeft < 0 ? 0 : end
 
-			setCurrentScrollLeft(() => currentScrollLeftPosition * 2)
-			scrollLeft.current = currentScrollLeftPosition * 2
-			carousel.firstChild.style.transform = `translateX(${-currentScrollLeftPosition}px)`
+			setTransOffsetLeft(() => transOffsetLeftPosition * 2)
+			accumulatorOffsetLeft.current = transOffsetLeftPosition * 2
+			carousel.firstChild.style.transform = `translateX(${-transOffsetLeftPosition}px)`
 		}
 	  };
 
@@ -136,10 +136,10 @@ const Carousel = ({children, data}) => {
 	const handleArrowsAction = value => {
 		const carousel = carouselRef.current
 
-		setCurrentScrollLeft(prev => prev + value)
-		scrollLeft.current = scrollLeft.current + value
-		carousel.scrollLeft = (scrollLeft.current + value) * 0.5
-		carousel.firstChild.style.transform = `translateX(${-((currentScrollLeft + value) * 0.5)}px)`
+		setTransOffsetLeft(prev => prev + value)
+		carousel.scrollLeft = (accumulatorOffsetLeft.current + value) * 0.5
+		accumulatorOffsetLeft.current = accumulatorOffsetLeft.current + value
+		carousel.firstChild.style.transform = `translateX(${-((transOffsetLeft + value) * 0.5)}px)`
 	}
 
 	const handleOnMouseOnArrow = () => setMouseOnArrow(true)
@@ -155,7 +155,7 @@ const Carousel = ({children, data}) => {
 			mouseOnArrow={mouseOnArrow}
 			ref={carouselRef}
 		>
-			<BoxesContainer id='widget' positionX={currentScrollLeft} items={data.length}>
+			<BoxesContainer id='widget' positionX={transOffsetLeft} items={data.length}>
 				{children}
 			</BoxesContainer>
 			
