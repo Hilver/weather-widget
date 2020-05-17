@@ -8,10 +8,6 @@ export const WidgetView = styled.div`
 	border-left: 1px solid grey;
 	transform: translateZ(0);
 
-	&:hover {
-		cursor: grab;
-	}
-
 	&::before {
 		content: '';
 		position: absolute;
